@@ -46,6 +46,13 @@
 		    <version>${org.springframework-version}</version>
 		    <scope>test</scope>
 		</dependency>
+		<!-- hikari-cp -->
+		<dependency>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>2.7.4</version>
+		</dependency>
+		
 		
 		
 				

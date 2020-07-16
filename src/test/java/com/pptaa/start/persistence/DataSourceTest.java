@@ -6,6 +6,8 @@ import java.sql.Connection;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,15 @@ public class DataSourceTest {
 	@Setter(onMethod_ = {@Autowired})
 	private DataSource dataSource;
 	
+	@Setter(onMethod_ = {@Autowired})
+	private SqlSessionFactory sqlSessionFactory;
+	
 	@Test
 	public void testConnection() {
-		try (Connection con = dataSource.getConnection()) {
+		
+		try (SqlSession sqlSession = sqlSessionFactory.openSession();
+				Connection con = dataSource.getConnection();) {
+			log.info(sqlSession);
 			log.info(con);
 		} catch (Exception e) {
 			fail(e.getMessage());
